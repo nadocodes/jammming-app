@@ -7,11 +7,11 @@ class CurrentUser extends React.Component {
         return (
         <div className="CurrentUser">
             <img
-            className="CurrentUser--image"
+            className="CurrentUser-image"
             src={this.props.currentUser.image}
             alt={this.props.currentUser.name}
             />
-            <h2 className="CurrentUser--name">{this.props.currentUser.name}</h2>
+            <h2 className="CurrentUser-name">{this.props.currentUser.name}</h2>
             {/* <a className="CurrentUser--logout" onClick={this.props.onLogout}>
             Logout
             </a> */}

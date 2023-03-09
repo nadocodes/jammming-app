@@ -72,6 +72,10 @@ const Spotify = {
 
     async currentUser() {
         const accessToken = Spotify.getAccessToken();
+        if (!accessToken) {
+            return null;
+        }
+
         let userID;
         let userImage;
         let userName;

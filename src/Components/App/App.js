@@ -69,7 +69,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Push<span className="highlight">Play</span>Listen</h1>
-        {this.state.currentUser && <CurrentUser currentUser={this.state.currentUser} />}
+        {this.state.currentUser !== null && <CurrentUser currentUser={this.state.currentUser} />}
         <div className="App">
           <SearchBar onSearch={this.search} />
           <div className="App-playlist">
