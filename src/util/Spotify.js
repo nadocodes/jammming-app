@@ -1,5 +1,5 @@
 const clientID = 'a739adac57ad4d2094fd1b969ca32131';
-const redirectURL = 'http://localhost:3000/';
+const redirectUri = 'http://pushplaylisten.surge.sh/';
 let accessToken;
 
 const Spotify = {
@@ -16,7 +16,7 @@ const Spotify = {
             window.history.pushState('Access Token', null, '/');
             return accessToken;
         } else {
-            const accessURL = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURL}`;
+            const accessURL = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`;
             window.location = accessURL;
         }
     },
