@@ -2,6 +2,7 @@ import React from 'react';
 import Playlist from '../Playlist/Playlist';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
+import CurrentUser from '../CurrentUser/CurrentUser';
 import Spotify from '../../util/Spotify';
 import './App.css';
 
@@ -12,13 +13,20 @@ class App extends React.Component {
     this.state = {
       searchResults: [],
       playlistName: 'My Playlist',
-      playlistTracks: []
+      playlistTracks: [],
+      currentUser: {}
     };
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
     this.search = this.search.bind(this);
+  }
+
+  componentDidMount() {
+    Spotify.currentUser().then (currentUser => {
+      this.setState({currentUser: currentUser})
+    });
   }
 
   addTrack(track) {
@@ -56,10 +64,12 @@ class App extends React.Component {
     })
   }
 
+
   render() {
     return (
       <div>
         <h1>Push<span className="highlight">Play</span>Listen</h1>
+        {this.state.currentUser && <CurrentUser currentUser={this.state.currentUser} />}
         <div className="App">
           <SearchBar onSearch={this.search} />
           <div className="App-playlist">

@@ -1,5 +1,6 @@
 const clientID = 'a739adac57ad4d2094fd1b969ca32131';
-const redirectUri = 'http://pushplaylisten.surge.sh/';
+//const redirectUri = 'http://pushplaylisten.surge.sh/';
+const redirectUri = 'http://localhost:3000/';
 let accessToken;
 
 const Spotify = {
@@ -67,6 +68,27 @@ const Spotify = {
                 })
             })
         })
+    },
+
+    async currentUser() {
+        const accessToken = Spotify.getAccessToken();
+        let userID;
+        let userImage;
+        let userName;
+        const response = await fetch('https://api.spotify.com/v1/me', {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        });
+        const jsonResponse = await response.json();
+        userID = jsonResponse.id;
+        userImage = jsonResponse.images[0].url;
+        userName = jsonResponse.display_name;
+        return {
+            id: userID,
+            image: userImage,
+            name: userName
+        }
     }
 }
 
