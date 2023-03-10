@@ -77,8 +77,8 @@ const Spotify = {
         }
 
         let userID;
-        let userImage;
         let userName;
+        let userImage;
         const response = await fetch('https://api.spotify.com/v1/me', {
             headers: {
                 Authorization: `Bearer ${accessToken}`
@@ -86,12 +86,12 @@ const Spotify = {
         });
         const jsonResponse = await response.json();
         userID = jsonResponse.id;
-        userImage = jsonResponse.images[0].url;
         userName = jsonResponse.display_name;
+        userImage = jsonResponse.images[0].url;
         return {
             id: userID,
+            name: userName,
             image: userImage,
-            name: userName
         }
     }
 }

@@ -11,7 +11,7 @@ class CurrentUser extends React.Component {
             src={this.props.currentUser.image}
             alt={this.props.currentUser.name}
             />
-            <h2 className="CurrentUser-name"><a target="_blank" href={`https://open.spotify.com/user/${this.props.currentUser.name}`}>{this.props.currentUser.name}</a></h2>
+            <h2 className="CurrentUser-name"><a target="_blank" rel="noreferrer" href={`https://open.spotify.com/user/${this.props.currentUser.id}`}>{this.props.currentUser.name}</a></h2>
             {/* <a className="CurrentUser--logout" onClick={this.props.onLogout}>
             Logout
             </a> */}
