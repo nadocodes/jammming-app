@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     border-bottom: 1px solid rgba(256, 256, 256, 0.8);
+    padding: 10px 0;
 }
 
 .Track-action {
@@ -34,4 +35,33 @@
     font-size: .83rem;
     font-weight: 300;
     color: rgba(256, 256, 256, 0.8);
+}
+
+.play {
+    margin-right: 10px;
+    float:left;
+    position:relative
+}
+
+.play:hover .play-button{display:block}
+.play-button{
+    position: absolute;
+    display: none;
+    top: 20%; 
+    width: 40px;
+    margin: 0 auto; left:0px;
+    right: 0px;
+    z-index: 100;
+    cursor: pointer;
+} 
+
+.pause-button {
+    position : absolute;
+    display:block;
+    top:20%; 
+    width:40px;
+    margin:0 auto; left:0px;
+    right:0px;
+    z-index:100;
+    cursor: pointer;
 }
