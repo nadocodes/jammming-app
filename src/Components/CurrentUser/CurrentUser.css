@@ -33,3 +33,7 @@ a {
     text-decoration: none;
     color: #6c41ec;
 }
+
+.login {
+    cursor: pointer;
+}

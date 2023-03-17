@@ -21,9 +21,10 @@ class App extends React.Component {
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
     this.search = this.search.bind(this);
+    this.getCurrentUser = this.getCurrentUser.bind(this);
   }
 
-  componentDidMount() {
+  getCurrentUser() {
     Spotify.currentUser().then (currentUser => {
       this.setState({currentUser: currentUser})
     });
@@ -61,7 +62,10 @@ class App extends React.Component {
   search(term) {
     Spotify.search(term).then (searchResults => {
       this.setState({searchResults: searchResults})
-    })
+    });
+    if (this.state.currentUser === null) {
+      this.getCurrentUser();
+    }
   }
 
 
@@ -69,7 +73,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Push<span className="highlight">Play</span>Listen</h1>
-        {this.state.currentUser !== null && <CurrentUser currentUser={this.state.currentUser} />}
+        <CurrentUser currentUser={this.state.currentUser} login={this.getCurrentUser} />
         <div className="App">
           <SearchBar onSearch={this.search} />
           <div className="App-playlist">
