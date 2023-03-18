@@ -23,13 +23,27 @@ class App extends React.Component {
     this.search = this.search.bind(this);
     this.getCurrentUser = this.getCurrentUser.bind(this);
   }
-
-  getCurrentUser() {
-    Spotify.currentUser().then (currentUser => {
-      this.setState({currentUser: currentUser})
-    });
+  
+  componentDidMount() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser !== null) {
+      this.setState({currentUser: currentUser});
+    }
   }
 
+  componentDidUpdate() {
+    if (this.state.currentUser === null) {
+      this.getCurrentUser();
+    }
+  }
+
+  getCurrentUser() {
+    Spotify.currentUser().then(currentUser => {
+      localStorage.setItem('currentUser', JSON.stringify(currentUser));
+      this.setState({ currentUser: currentUser });
+    });
+  }
+  
   addTrack(track) {
     let tracks = this.state.playlistTracks;
     if (this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
