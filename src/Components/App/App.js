@@ -3,6 +3,7 @@ import Playlist from '../Playlist/Playlist';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import CurrentUser from '../CurrentUser/CurrentUser';
+import PlaylistList from '../PlaylistList/PlaylistList';
 import Spotify from '../../util/Spotify';
 import './App.css';
 
@@ -12,8 +13,9 @@ class App extends React.Component {
 
     this.state = {
       searchResults: [],
-      playlistName: 'My Playlist',
+      playlistName: 'Playlist Name',
       playlistTracks: [],
+      playlists: [],
       currentUser: null
     };
     this.addTrack = this.addTrack.bind(this);
@@ -22,12 +24,14 @@ class App extends React.Component {
     this.savePlaylist = this.savePlaylist.bind(this);
     this.search = this.search.bind(this);
     this.getCurrentUser = this.getCurrentUser.bind(this);
+    this.getUserPlaylists = this.getUserPlaylists.bind(this);
   }
   
   componentDidMount() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (currentUser !== null) {
       this.setState({currentUser: currentUser});
+      this.getUserPlaylists();
     }
   }
 
@@ -41,6 +45,13 @@ class App extends React.Component {
     Spotify.currentUser().then(currentUser => {
       localStorage.setItem('currentUser', JSON.stringify(currentUser));
       this.setState({ currentUser: currentUser });
+      this.getUserPlaylists();
+    });
+  }
+
+  getUserPlaylists() {
+    Spotify.getPlaylists().then((playlists) => {
+      this.setState({ playlists });
     });
   }
   
@@ -67,7 +78,7 @@ class App extends React.Component {
     const trackUris = this.state.playlistTracks.map(track => track.uri);
     Spotify.savePlaylist(this.state.playlistName, trackUris).then(() => {
       this.setState({
-        playlistName: 'New Playlist',
+        playlistName: 'Playlist Name',
         playlistTracks: []
       })
     })
@@ -76,6 +87,7 @@ class App extends React.Component {
   search(term) {
     Spotify.search(term).then (searchResults => {
       this.setState({searchResults: searchResults})
+      this.getUserPlaylists();
     });
   }
 
@@ -91,6 +103,7 @@ class App extends React.Component {
             <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} tracksInPlaylist={this.state.playlistTracks} />
             <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} onRemove={this.removeTrack} onNameChange={this.updatePlaylistName} onSave={this.savePlaylist} />
           </div>
+          <PlaylistList playlists={this.state.playlists} />
         </div>
       </div>
     )

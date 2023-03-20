@@ -1,4 +1,4 @@
-const clientID = 'a739adac57ad4d2094fd1b969ca32131';
+const clientID = `${process.env.REACT_APP_SPOTIFY_CLIENT_ID}`;
 //const redirectUri = 'http://localhost:3000/';
 //const redirectUri = 'http://pushplaylisten.surge.sh/';
 const redirectUri = 'https://pushplaylisten.netlify.app';
@@ -96,8 +96,40 @@ const Spotify = {
             id: userID,
             name: userName,
             image: userImage,
+        };
+    },
+
+    getPlaylists() {
+        if (!accessToken) {
+            accessToken = Spotify.getAccessToken();
         }
+        const headers = {
+            Authorization: `Bearer ${accessToken}`,
+        };
+
+        let userID;
+        return fetch('https://api.spotify.com/v1/me', {
+            headers: headers
+        }).then (response => response.json()
+        ).then (jsonResponse => {
+            userID = jsonResponse.id;
+            return fetch(`https://api.spotify.com/v1/users/${userID}/playlists`, {
+                headers: headers,
+                method: "GET",
+            })
+                .then((response) => response.json())
+                .then((jsonResponse) => {
+                    if (!jsonResponse.items) {
+                        return [];
+                }
+                return jsonResponse.items.map((playlist) => ({
+                    playlistName: playlist.name,
+                    playlistId: playlist.id,
+                    playlistImage: playlist.images[0] ? playlist.images[0].url : 'https://i.imgur.com/8Q9QY7q.png',
+                }));
+            });
+        });
     }
-}
+};
 
 export default Spotify;

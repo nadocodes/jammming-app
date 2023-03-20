@@ -40,7 +40,7 @@
 .play {
     margin-right: 10px;
     float:left;
-    position:relative
+    position:relative;
 }
 
 .play:hover .play-button{display:block}
@@ -64,4 +64,8 @@
     right:0px;
     z-index:100;
     cursor: pointer;
+}
+
+.cover {
+    margin: 0;
 }
