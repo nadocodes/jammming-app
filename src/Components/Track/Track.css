@@ -3,6 +3,7 @@
     align-items: center;
     border-bottom: 1px solid rgba(256, 256, 256, 0.8);
     padding: 10px 0;
+    gap: 10px;
 }
 
 .Track-action {
@@ -38,7 +39,6 @@
 }
 
 .play {
-    margin-right: 10px;
     float:left;
     position:relative;
 }
@@ -67,5 +67,5 @@
 }
 
 .cover {
-    margin: 0;
+    margin-right: 0px;
 }

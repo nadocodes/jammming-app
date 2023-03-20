@@ -4,6 +4,7 @@
     align-items: center;
     border-bottom: 1px solid rgba(256, 256, 256, 0.8);
     padding: 10px 0;
+    gap: 10px;
 }
 
 .PlaylistItem:hover {
@@ -13,8 +14,7 @@
 .cover {
     width: 64px;
     height: 64px;
-    margin-right: 10px;
+    margin-right: 0px;
     float:left;
     position:relative;
-    margin-right: 10px;
 }
