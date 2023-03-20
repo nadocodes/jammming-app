@@ -31,8 +31,8 @@ class App extends React.Component {
     }
   }
 
-  componentDidUpdate() {
-    if (this.state.currentUser === null) {
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.currentUser === null && prevState.currentUser !== null) {
       this.getCurrentUser();
     }
   }
