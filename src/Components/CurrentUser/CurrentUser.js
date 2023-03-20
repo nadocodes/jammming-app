@@ -6,7 +6,8 @@ class CurrentUser extends React.Component {
     render() {
         return (
         <div>
-            {this.props.currentUser !== null ? <div className="CurrentUser">
+            {this.props.currentUser === null ? <div className="CurrentUser login" onClick={this.props.login}><h2 className="CurrentUser-name">Login</h2></div>
+            : <div className="CurrentUser">
                 <img
                 className="CurrentUser-image"
                 src={this.props.currentUser.image}
@@ -16,7 +17,7 @@ class CurrentUser extends React.Component {
                 {/* <a className="CurrentUser--logout" onClick={this.props.onLogout}>
                 Logout
                 </a> */}
-            </div> : <div className="CurrentUser login" onClick={this.props.login}><h2 className="CurrentUser-name">Login</h2></div>}
+            </div>}
         </div>
         );
     }
