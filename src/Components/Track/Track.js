@@ -29,11 +29,12 @@ class Track extends React.Component {
         this.props.onRemove(this.props.track);
     }
 
-    play() {
+    play(volumeLevel) {
         if (this.state.play) {
             this.audio.pause();
             this.setState({play: false});
         } else {
+            this.audio.volume = volumeLevel;
             this.audio.play();
             this.setState({play: true});
         }
@@ -44,7 +45,7 @@ class Track extends React.Component {
     render() {
         return (
             <div className="Track">
-                <button className="play" onClick={this.play}>
+                <button className="play" onClick={() => this.play(0.5)}>
                     <img src={this.props.track.cover}
                     alt={this.props.track.album}
                     className="cover"/>
