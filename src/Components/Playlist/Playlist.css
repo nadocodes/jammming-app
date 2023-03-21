@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     overflow-y: scroll;
+    overflow-x: hidden;
     width: 37%;
     max-height: 950px;
     padding: .88rem;

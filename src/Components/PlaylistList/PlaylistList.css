@@ -29,5 +29,6 @@
     .PlaylistList {
     width: 90%;
     margin-bottom: 1rem;
+    margin-inline: auto;
     }
 }
