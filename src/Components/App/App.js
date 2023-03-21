@@ -25,6 +25,7 @@ class App extends React.Component {
     this.search = this.search.bind(this);
     this.getCurrentUser = this.getCurrentUser.bind(this);
     this.getUserPlaylists = this.getUserPlaylists.bind(this);
+    this.selectPlaylist = this.selectPlaylist.bind(this);
   }
   
   componentDidMount() {
@@ -35,7 +36,7 @@ class App extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevState) {
     if (this.state.currentUser === null && prevState.currentUser !== null) {
       this.getCurrentUser();
     }
@@ -52,6 +53,12 @@ class App extends React.Component {
   getUserPlaylists() {
     Spotify.getPlaylists().then((playlists) => {
       this.setState({ playlists });
+    });
+  }
+
+  selectPlaylist(playlistId, name) {
+    Spotify.getPlaylist(playlistId).then((playlist) => {
+      this.setState({ playlistName: name, playlistTracks: playlist });
     });
   }
   
@@ -103,7 +110,7 @@ class App extends React.Component {
             <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} tracksInPlaylist={this.state.playlistTracks} />
             <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} onRemove={this.removeTrack} onNameChange={this.updatePlaylistName} onSave={this.savePlaylist} />
           </div>
-          <PlaylistList playlists={this.state.playlists} />
+          <PlaylistList playlists={this.state.playlists} selectPlaylist={this.selectPlaylist} />
         </div>
       </div>
     )

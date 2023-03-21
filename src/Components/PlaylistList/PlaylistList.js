@@ -14,6 +14,7 @@ export default class PlaylistList extends React.Component {
                             name={playlist.playlistName}
                             cover={playlist.playlistImage}
                             key={playlist.playlistId}
+                            onClick={() => this.props.selectPlaylist(playlist.playlistId, playlist.playlistName)}
                             />
                         );
                     })}
