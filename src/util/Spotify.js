@@ -104,8 +104,8 @@ const Spotify = {
         });
         const jsonResponse = await response.json();
         userID = jsonResponse.id;
-        userName = jsonResponse.display_name;
-        userImage = jsonResponse.images[0].url;
+        userName = jsonResponse.display_name ? jsonResponse.display_name : jsonResponse.id ;
+        userImage = jsonResponse.images[0].url ? jsonResponse.images[0].url : 'https://i.imgur.com/8Q9QY7q.png';
         return {
             id: userID,
             name: userName,
