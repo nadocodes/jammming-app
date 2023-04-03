@@ -44,6 +44,27 @@ h2 {
   width: 100%;
 }
 
+.tips-button {
+  box-shadow: 0 4px 2px 2px #000000;
+  background-color: rgba(1, 12, 63, 0.7);
+  color: white;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 10px 20px;
+  margin: 10px 0;
+  border: none;
+  z-index: 10;
+  position: fixed;
+  bottom: 5px;
+  right: 15px;
+}
+
+.tips-button:hover {
+  scale: 1.1;
+}
+
 @media only screen and (max-width: 1020px) {
   .App-playlist {
     align-items: center;
@@ -51,5 +72,8 @@ h2 {
   }
   .App {
     padding: 0 5% 10% 5%;
+  }
+  .tips-button {
+    padding: 10px
   }
 }

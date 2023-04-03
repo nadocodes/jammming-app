@@ -5,6 +5,7 @@ import SearchResults from '../SearchResults/SearchResults';
 import CurrentUser from '../CurrentUser/CurrentUser';
 import PlaylistList from '../PlaylistList/PlaylistList';
 import Spotify from '../../util/Spotify';
+import Tips from '../Tips/Tips';
 import './App.css';
 
 class App extends React.Component {
@@ -17,7 +18,8 @@ class App extends React.Component {
       playlistTracks: [],
       playlists: [],
       playlistId: null,
-      currentUser: null
+      currentUser: null,
+      showTips: false
     };
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
@@ -27,6 +29,8 @@ class App extends React.Component {
     this.getCurrentUser = this.getCurrentUser.bind(this);
     this.getUserPlaylists = this.getUserPlaylists.bind(this);
     this.selectPlaylist = this.selectPlaylist.bind(this);
+    this.handleShowTips = this.handleShowTips.bind(this);
+    this.handleCloseTips = this.handleCloseTips.bind(this);
   }
   
   componentDidMount() {
@@ -103,6 +107,15 @@ class App extends React.Component {
     });
   }
 
+  handleShowTips = (e) => {
+    e.preventDefault();
+    this.setState({showTips: true});
+  }
+
+  handleCloseTips = () => {
+    this.setState({showTips: false});
+  }
+
 
   render() {
     return (
@@ -110,6 +123,7 @@ class App extends React.Component {
         <h1>Push<span className="highlight">Play</span>Listen</h1>
         <CurrentUser currentUser={this.state.currentUser} login={this.getCurrentUser} />
         <div className="App">
+        <button onClick={this.handleShowTips} className="tips-button" >Tips</button>
           <SearchBar onSearch={this.search} />
           <div className="App-playlist">
             <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} tracksInPlaylist={this.state.playlistTracks} />
@@ -117,6 +131,7 @@ class App extends React.Component {
           </div>
           <PlaylistList playlists={this.state.playlists} selectPlaylist={this.selectPlaylist} />
         </div>
+        {this.state.showTips && <Tips showTips={this.state.showTips} closeTips={this.handleCloseTips} />}
       </div>
     )
   }
