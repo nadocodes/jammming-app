@@ -19,7 +19,8 @@ class App extends React.Component {
       playlists: [],
       playlistId: null,
       currentUser: null,
-      showTips: false
+      showTips: false,
+      ignoreComponent: true
     };
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
@@ -42,7 +43,9 @@ class App extends React.Component {
   }
 
   componentDidUpdate(prevState) {
-    if (this.state.currentUser === null && prevState.currentUser !== null) {
+    if (this.state.ignoreComponent) {
+      return
+    } else if (this.state.currentUser === null && prevState.currentUser !== null) {
       this.getCurrentUser();
     }
   }
@@ -131,7 +134,7 @@ class App extends React.Component {
           </div>
           <PlaylistList playlists={this.state.playlists} selectPlaylist={this.selectPlaylist} />
         </div>
-        {this.state.showTips && <Tips showTips={this.state.showTips} closeTips={this.handleCloseTips} />}
+        {this.state.showTips && <Tips showTips={this.state.showTips} closeTips={this.handleCloseTips} ignore={this.state.ignoreComponent} />}
       </div>
     )
   }

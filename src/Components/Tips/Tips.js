@@ -16,7 +16,7 @@ class Tips extends React.Component {
                         <ul>
                             <li className="tip">
                                 <h3>Login:</h3>
-                                <p>Click login to authenticate and follow Spotify's authentication process.</p>
+                                <p>Click login or search for a song to authenticate and follow Spotify's authentication process.</p>
                             </li>
                             <li className="tip">
                                 <h3>Search:</h3>
