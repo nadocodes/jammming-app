@@ -20,7 +20,7 @@ class Tips extends React.Component {
                             </li>
                             <li className="tip">
                                 <h3>Search:</h3>
-                                <p>Use the search bar and type in the title, album or artist name to quickly locate a song on your site.</p>
+                                <p>Use the search bar and type in the title, album or artist name to quickly locate songs of choice.</p>
                             </li>
                             <li className="tip">
                                 <h3>Results / Add or Remove Songs:</h3>
