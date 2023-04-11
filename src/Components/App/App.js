@@ -6,6 +6,7 @@ import CurrentUser from '../CurrentUser/CurrentUser';
 import PlaylistList from '../PlaylistList/PlaylistList';
 import Spotify from '../../util/Spotify';
 import Tips from '../Tips/Tips';
+import Video from './background_photo_desktop.webm';
 import './App.css';
 
 class App extends React.Component {
@@ -129,6 +130,9 @@ class App extends React.Component {
         <h1>Push<span className="highlight">Play</span>Listen</h1>
         <CurrentUser currentUser={this.state.currentUser} login={this.getCurrentUser} />
         <div className="App">
+        <video autoPlay muted loop id="myVideo">
+          <source src={Video} type="video/mp4" />
+        </video>
         <button onClick={this.handleShowTips} className="tips-button" >Tips</button>
           <SearchBar onSearch={this.search} />
           <div className="App-playlist">

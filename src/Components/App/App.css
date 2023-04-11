@@ -29,15 +29,21 @@ h2 {
 .App {
   height: 100%;
   padding: 0 17% 10% 17%;
-  background-image: url('./background_photo_desktop.gif');
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
   font-family: 'Work Sans', sans-serif;
   font-weight: 500;
   color: #fff;
 }
+
+#myVideo {
+  position: fixed;
+  top: 49%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -100;
+}
+
 
 .App-playlist {
   display: flex;
