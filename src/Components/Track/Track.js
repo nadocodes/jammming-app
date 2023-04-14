@@ -33,11 +33,25 @@ class Track extends React.Component {
         if (this.state.play) {
             this.audio.pause();
             this.setState({play: false});
+            this.props.playID('')
         } else {
             this.audio.volume = volumeLevel;
             this.audio.play();
             this.setState({play: true});
+            this.props.playID(this.props.track.id)
         }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.nowPlaying !== this.props.nowPlaying && this.props.nowPlaying !== this.props.track.id) {
+            this.audio.pause();
+            this.setState({play: false});
+        }
+    }
+
+    componentWillUnmount() {
+        this.audio.pause();
+        this.setState({play: false});
     }
 
 
