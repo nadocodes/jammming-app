@@ -52,6 +52,7 @@ class Track extends React.Component {
     componentWillUnmount() {
         this.audio.pause();
         this.setState({play: false});
+        this.props.playID('')
     }
 
 
