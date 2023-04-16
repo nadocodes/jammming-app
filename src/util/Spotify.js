@@ -169,7 +169,6 @@ const Spotify = {
 
     logOut() {
         accessToken = '';
-        window.location = 'http://localhost:3000/';
     }
 };
 
