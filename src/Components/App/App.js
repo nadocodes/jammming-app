@@ -34,6 +34,7 @@ class App extends React.Component {
     this.selectPlaylist = this.selectPlaylist.bind(this);
     this.handleShowTips = this.handleShowTips.bind(this);
     this.handleCloseTips = this.handleCloseTips.bind(this);
+    this.handleLogOut = this.handleLogOut.bind(this);
   }
   
   componentDidMount() {
@@ -124,12 +125,18 @@ class App extends React.Component {
     this.setState({showTips: false});
   }
 
+  handleLogOut = () => {
+    Spotify.logOut();
+    this.setState({currentUser: null});
+    localStorage.removeItem('currentUser');
+  }
+
 
   render() {
     return (
       <div>
         <h1>Push<span className="highlight">Play</span>Listen</h1>
-        <CurrentUser currentUser={this.state.currentUser} login={this.getCurrentUser} />
+        <CurrentUser currentUser={this.state.currentUser} login={this.getCurrentUser} onLogout={this.handleLogOut} />
         <div className="App">
         <video autoPlay muted loop id="myVideo">
           <source src={VideoWebm} type="video/webm" />

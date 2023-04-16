@@ -165,6 +165,11 @@ const Spotify = {
             cover: track.track.album.images[2].url,
             audio: track.track.preview_url
         }));
+    },
+
+    logOut() {
+        accessToken = '';
+        window.location = 'http://localhost:3000/';
     }
 };
 
