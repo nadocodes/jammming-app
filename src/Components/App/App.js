@@ -96,7 +96,7 @@ class App extends React.Component {
   }
 
   savePlaylist() {
-    if (this.state.playlistName === '' || this.state.playlistTracks.length === 0 || this.state.playlistId === null) {
+    if (this.state.playlistName === '' || this.state.playlistTracks.length === 0) {
       return;
     }
     const trackUris = this.state.playlistTracks.map(track => track.uri);
