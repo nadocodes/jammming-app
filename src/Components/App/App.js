@@ -38,9 +38,9 @@ class App extends React.Component {
   }
   
   componentDidMount() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (currentUser !== null) {
-      this.setState({currentUser: currentUser});
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    if (user !== null) {
+      this.setState({currentUser: user});
       this.getUserPlaylists();
     }
   }
