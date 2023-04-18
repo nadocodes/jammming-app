@@ -24,7 +24,7 @@ const Spotify = {
 
     async search(term) {
         if (!accessToken) {
-            accessToken = Spotify.getAccessToken();
+            Spotify.getAccessToken();
         }
         const response = await fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, {
             headers: {
@@ -50,7 +50,9 @@ const Spotify = {
         if (!playlistName || !trackUris.length) {
             return;
         }
-        const accessToken = Spotify.getAccessToken();
+        if (!accessToken) {
+            Spotify.getAccessToken();
+        }
         const headers = {Authorization: `Bearer ${accessToken}`};
         let userID;
         return fetch('https://api.spotify.com/v1/me', {
@@ -90,7 +92,7 @@ const Spotify = {
 
     async currentUser() {       
         if (!accessToken) {
-            accessToken = Spotify.getAccessToken();
+            Spotify.getAccessToken();
         }
 
         let userID;
@@ -114,7 +116,7 @@ const Spotify = {
 
     async getPlaylists() {
         if (!accessToken) {
-            accessToken = Spotify.getAccessToken();
+            Spotify.getAccessToken();
         }
         const headers = {
             Authorization: `Bearer ${accessToken}`,
@@ -143,7 +145,7 @@ const Spotify = {
 
     async getPlaylist(playlistId) {
         if (!accessToken) {
-            accessToken = Spotify.getAccessToken();
+            Spotify.getAccessToken();
         }
         const headers = {
             Authorization: `Bearer ${accessToken}`,
