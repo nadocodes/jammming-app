@@ -114,6 +114,9 @@ class App extends React.Component {
     Spotify.search(term).then (searchResults => {
       this.setState({searchResults: searchResults, ignoreComponent: false});
     });
+    if (this.state.currentUser) {
+      this.setState({ignoreComponent: true});
+    }
   }
 
   handleShowTips = (e) => {
