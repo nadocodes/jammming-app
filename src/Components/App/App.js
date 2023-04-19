@@ -22,7 +22,7 @@ class App extends React.Component {
       playlistId: null,
       currentUser: null,
       showTips: false,
-      ignoreComponent: true
+      ignoreComponent: false
     };
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
@@ -112,13 +112,13 @@ class App extends React.Component {
 
   search(term) {
     Spotify.search(term).then (searchResults => {
-      this.setState({searchResults: searchResults});
+      this.setState({searchResults: searchResults, ignoreComponent: false});
     });
   }
 
   handleShowTips = (e) => {
     e.preventDefault();
-    this.setState({showTips: true});
+    this.setState({showTips: true, ignoreComponent: true});
   }
 
   handleCloseTips = () => {
@@ -126,8 +126,8 @@ class App extends React.Component {
   }
 
   handleLogOut = () => {
+    this.setState({currentUser: null, ignoreComponent: true});
     Spotify.logOut();
-    this.setState({currentUser: null});
     localStorage.removeItem('currentUser');
   }
 
