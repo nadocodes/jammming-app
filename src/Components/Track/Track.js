@@ -40,6 +40,13 @@ class Track extends React.Component {
             this.setState({play: true});
             this.props.playID(this.props.track.id)
         }
+        this.audio.addEventListener('ended', () => {
+            if (this.state.play) {
+                this.audio.pause();
+                this.setState({play: false});
+                this.props.playID('');
+            }
+        });
     }
 
     componentDidUpdate(prevProps, prevState) {
